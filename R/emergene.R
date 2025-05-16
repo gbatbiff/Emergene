@@ -84,12 +84,10 @@ if (input_type == "panaroo" && is.null(pangenome_file)) {
   quit(save = "no", status = 1)
 }
 
-# Load the phylogenetic tree (mandatory)
 cat("Loading phylogenetic tree...\n")
 tree <- read.tree(tree_file)
 cat("Tree Loaded!\n")
 
-# Process amrfinder (AMR table file)
 if (input_type == "amrfinder") {
   cat("Processing AMR Table (amrfinder)...\n")
   amr <- read.delim(amr_table_file, sep = "\t")
@@ -97,7 +95,6 @@ if (input_type == "amrfinder") {
   #print(head(amr))  # Just to check if the file is loaded correctly
 }
 
-# Process panaroo (pangenome file)
 if (input_type == "panaroo") {
   cat("Processing Pangenome (panaroo)...\n")
   pangenome <- read.delim(pangenome_file, sep = "\t")
@@ -113,13 +110,6 @@ output_dir <- file.path("results", timestamp)  # Create folder name based on tim
 cat("Creating results directory: ", output_dir, "\n")
 dir.create(output_dir, recursive = TRUE)
 
-
-print (output_dir)
-# Save results to the output directory (for example, a summary or plot)
-# output_file <- file.path(output_dir, sprintf("summary_%s.txt",amr))
-# 
-# # Example of saving a result (you can replace this with your own results)
-# cat("Saving results to: ", output_file, "\n")
 
 #phylotree<-args[1]
 
@@ -940,7 +930,7 @@ for (amr in unique(nmost)){
           
           tt<-extract.clade(tree, poly_parents[p])
           
-          tt<-di2multi(tt) ### remove multifurcation otherwise coalescence.intervals not working
+          tt<-di2multi(tt) ### remove multifurcation 
           
           # 
           entry_rate<-c()
@@ -1013,7 +1003,8 @@ for (amr in unique(nmost)){
               node_depths<-vapply(descend,function(j){nodeheight(tree,j)}, FUN.VALUE = 1)
               
               tt<-extract.clade(tree, first_res_poly_child)
-              tt<-di2multi(tt) ### remove multifurcation otherwise coalescence.intervals not working
+              
+              tt<-di2multi(tt) ### remove multifurcation 
               
               descend_tips_trait<-length(tt$tip.label[tt$tip.label %in% names(xx[xx=="R"])])
               
@@ -1139,7 +1130,7 @@ for (amr in unique(nmost)){
                 descend<-getDescendants(tree, first_res_poly_child[c])
                 
                 tt<-extract.clade(tree, first_res_poly_child[c])
-                tt<-di2multi(tt) ### remove multifurcation otherwise coalescence.intervals not working
+                tt<-di2multi(tt) ### remove multifurcation 
                 
                 
                 
@@ -1252,23 +1243,18 @@ for (amr in unique(nmost)){
                 
                 
               }
-              #}   
-              
-              
+                
             }      
             
           }    
+          
         } # node check
-        
-        
+            
       } # poly loop     
-      
-      
+    
     } #poly check    
     
   }  #gain
-  
-  
   
   break} #amr pool
 
