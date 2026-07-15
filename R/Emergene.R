@@ -140,14 +140,31 @@ for (amr in nmost) {
   
   if (table(xx)[[1]]<table(xx)[[2]]) {
     
-    print (amr)    
+  cat("Analysed gene:", amr, "\n")
     
-    simmap_Q <- make.simmap(tree, xx, model = "ARD", tips = TRUE, pi ="estimated", nsim = 1)
+    sink(tempfile())
+    simmap_Q <- make.simmap(
+      tree, xx,
+      model = "ARD",
+      tips = TRUE,
+      pi = "estimated",
+      nsim = 1
+    )
+    sink()
     
-    Q<-simmap_Q$Q
+    Q <- simmap_Q$Q
     
-    simmap_mod <- make.simmap(tree, xx, model = "ARD", tips = TRUE, pi="estimated", nsim = 10, Q=Q)
-    
+    sink(tempfile())
+    simmap_mod <- make.simmap(
+      tree, xx,
+      model = "ARD",
+      tips = TRUE,
+      pi = "estimated",
+      nsim = 100,
+      Q = Q
+    )
+    sink()
+        
     
     simmap<-summary(simmap_mod)
     
