@@ -41,8 +41,13 @@ Rscript Emergene.R -t data/treefile.nwk -amr data/AMRFinder.txt
 ## Notes
 The tree labels have to match the strain name of AMRFinder output table 
 
+## Filtering EMERGENe output
+The EMERGENe script generates single outputs for each gene screened from AMRFinder results with the main following attributes:
 
-## Coming soon
+' - amr
+' - node lineages
+' - tip lineages
+
 
 
 ### Citation
