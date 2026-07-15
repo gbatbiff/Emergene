@@ -20,9 +20,9 @@ This package estimates the emergence rate of traits of epidemiological interest 
 
 ```bash
 git clone https://github.com/gbatbiff/Emergene.git
-cd Emergene/
+cd EMERGENe/
 conda env create -f environment.yml
-conda activate Emergene
+conda activate EMERGENe
 ```
 ## Quick guide
 The standard inputs are a time scaled phylogenetic tree (Bacdating, BEAST...), and the output from AMRFinder
