@@ -9,7 +9,7 @@ This package estimates the emergence rate of traits of epidemiological interest 
 - Once that the history of a trait is reconstructed, the number of introductions of the trait across the population are detected, intended as Polyphyletic event
 - Once a parent node is detected, its children node with opposite state become the MRCA and a sub-tree is generated. Then, the Entry rate is calculated based on
   the branch distance between the parent node and its child with opposite state i.e. branch duration associated with the trait introduction, where a transition between       demes occurs
-- Finally, the Emergence Rate is computed, indicating the propagation time of the trait in the population that descend from the initial node that experienced a shift         between the states. (See Methods for details) 
+- Finally, the Emergence Rate is computed, indicating the propagation time of the trait in the population that descend from the initial node that experienced a shift         between the states. (See methods section for details) 
 
 ## Installation
 ### Requirements
@@ -44,10 +44,17 @@ The tree labels have to match the strain name of AMRFinder output table
 ## Filtering EMERGENe output
 The EMERGENe script generates single outputs for each gene screened from AMRFinder results with the main following attributes:
 
-' - amr
-' - node lineages
-' - tip lineages
-
+- `amr`
+- `node_lineages` - number of internal nodes descendants that gained the trait
+- `tip_lineages` - number of terminal tips descendants that gained the trait
+- `poly_parent` - internal node that experienced a polyphyletic event i.e. a shift between states where a trait is gained
+- `polyphyly` - number of polyphyletic events
+- `coalescent_interval` - branching distance calculated from polyphyletic parent node and its descendants
+- `poly_parent_nodeheight` - node height (age) of the polyphyletic node
+- `entry_rate` - trait introduction (see method section for details)
+- `R_vs_S_prop` - percentage of descendants of the polyphyletic node that carry the trait
+- `poly_parent_state_prob` - ancestral state probability of character assignment (Default >0.8)
+- `emergence_rate` - post-introduction trait propagation (see method section for details)
 
 
 ### Citation
